@@ -1,26 +1,34 @@
 const express = require("express")
+const serverless = require("serverless-http")
 const cors = require("cors")
 
 const app = express()
-const PORT = "5000"
-
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.listen(PORT, () => {
-  console.log(
-    `Example backend app for partnercard is listening at http://localhost:${PORT}`
-  )
-})
+const router = express.Router()
 
 const authenticated = require("./authenticated.json")
 const invalid_login = require("./invalid_login.json")
 const invalid_password = require("./invalid_password.json")
 const invalid_both_creds = require("./invalid_both_creds.json")
 
-app.post("/check", (req, res) => {
-  console.log(req.body.data.login)
-  console.log(req.body.data.password)
+router.get("/", (req, res) => {
+  res.json({
+    hello: "hi!",
+  })
+})
+
+router.get("/test", (req, res) => {
+  console.log(req)
+  res.json({
+    hello: "test!",
+  })
+})
+
+router.post("/check", (req, res) => {
+  //   console.log("login:", req.body.data.login)
+  //   console.log("password:", req.body.data.password)
   if (req.body.data.login === "qw" && req.body.data.password === "123") {
     res.json(authenticated)
     return
@@ -37,8 +45,13 @@ app.post("/check", (req, res) => {
     res.json(invalid_both_creds)
     return
   }
+  if (req.body.data.login === "qw" && req.body.data.password === "123") {
+    res.json({ details: "sdgfdsgsdrfhgdfsghdfgh!" })
+    return
+  }
 })
 
-// app.post("/ch", (req, res) => {
-//   res.json(authenticated)
-// })
+app.use(`/.netlify/functions/api`, router)
+
+module.exports = app
+module.exports.handler = serverless(app)
