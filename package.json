@@ -6,13 +6,15 @@
   "scripts": {
     "start": "./node_modules/.bin/netlify-lambda serve src",
     "build": "./node_modules/.bin/netlify-lambda build src"
-    },
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "fs": "^0.0.1-security",
     "netlify-lambda": "^2.0.15",
-    "serverless-http": "^2.7.0"
+    "serverless-http": "^2.7.0",
+    "uuid": "^8.3.2"
   }
 }

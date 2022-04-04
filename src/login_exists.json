@@ -1,0 +1,7 @@
+{
+    "status": "warning",
+    "data": {
+      "details": "reCheck",
+      "message": "Such login exists in database, try to use another login"
+    }
+  }
