@@ -132,6 +132,43 @@ router.post("/check", checkCreds)
 
 router.post("/create", create)
 
+const devices = {
+  _id: "1111",
+  challenge: "",
+  counter: 1,
+  publicKey: "",
+  attestationObject: "",
+  clientDataJSON: "",
+  userAgent: "",
+  user: "",
+}
+
+// const createAuth = async (req, res) => {
+//   const deviceId = req.cookies["my-long-live-cookie"]
+//   const device = await devices.findById(deviceId)
+//   if (!device) return {}
+//   device.challenge = require("crypto").randomBytes(16).toString("hex")
+//   await device.save()
+//   return { challenge: device.challenge }
+// }
+
+// -----------------------------------------------------------
+
+// const createAuth = (req, res) => {
+//   const deviceId = "333"
+//   const device = devices
+//   if (!device) return {}
+//   device.challenge = require("crypto").randomBytes(16).toString("hex")
+//   // await device.save()
+//   res.json({ challenge: device.challenge })
+// }
+
+const createAuth = (req, res) => {
+  res.json(req.body)
+}
+
+router.post("/save", createAuth)
+
 app.use(`/.netlify/functions/api`, router)
 
 module.exports = app
