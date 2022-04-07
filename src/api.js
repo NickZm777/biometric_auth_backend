@@ -9,10 +9,10 @@ const { v4: uuidv4 } = require("uuid")
 const app = express()
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-const router = express.Router()
+app.use(express.urlencoded({ extended: true }));
+const router = express.Router();
 
-const authenticated = require("./authenticated.json")
+const authenticated = require("./authenticated.json");
 const invalid_login = require("./invalid_login.json")
 const invalid_password = require("./invalid_password.json")
 const invalid_both_creds = require("./invalid_both_creds.json")
@@ -28,9 +28,20 @@ const data = [
   },
 ]
 
+const keys = [
+  {
+    key: "example key",
+  },
+]
+
 const getAll = (req, res) => {
   console.log(data)
   res.json(data)
+}
+
+const getKeys = (req, res) => {
+  console.log(keys)
+  res.json(keys)
 }
 
 const create = (req, res) => {
@@ -121,6 +132,7 @@ router.get("/test", (req, res) => {
 })
 
 router.get("/all", getAll)
+router.get("/keys", getKeys)
 
 router.post("/check", checkCreds)
 
@@ -164,7 +176,9 @@ const devices = {
 // }
 
 const createAuth = (req, res) => {
-  res.json(req.body)
+  const key = req.body
+  keys.push(key)
+  res.json(keys)
 }
 
 router.post("/save", createAuth)
