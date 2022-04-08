@@ -3,22 +3,18 @@ const serverless = require("serverless-http")
 const cors = require("cors")
 const { v4: uuidv4 } = require("uuid")
 
-// import { getAll } from "./helpers.js"
-// const getAll = require("./helpers.js")
-
 const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const router = express.Router()
 
-const authenticated = require("./authenticated.json")
-const invalid_login = require("./invalid_login.json")
-const invalid_password = require("./invalid_password.json")
-const invalid_both_creds = require("./invalid_both_creds.json")
-const login_exists = require("./login_exists.json")
-const userData = require("store/data.json")
-const userKeys = require("/store/keys.json")
+const authenticated = require("./auth/authenticated.json")
+const invalid_login = require("./auth/invalid_login.json")
+const invalid_password = require("./auth/invalid_password.json")
+const login_exists = require("./auth/login_exists.json")
+const userData = require("./store/data.json")
+const userKeys = require("./store/keys.json")
 
 const getAll = (req, res) => {
   console.log(userData)
@@ -104,46 +100,25 @@ const checkCreds = (req, res) => {
   }
 }
 
-router.get("/", (req, res) => {
-  res.json({
-    hello: "hi!",
-  })
-})
-
-router.get("/test", (req, res) => {
-  console.log(req)
-  res.json({
-    hello: "test!",
-  })
-})
-
-router.get("/all", getAll)
-router.get("/keys", getKeys)
-
-router.post("/check", checkCreds)
-
-router.post("/create", create)
-
-const devices = {
-  _id: "1111",
-  challenge: "",
-  counter: 1,
-  publicKey: "",
-  attestationObject: "",
-  clientDataJSON: "",
-  userAgent: "",
-  user: "",
-}
-
 const createAuth = (req, res) => {
   const key = req.body
   userKeys.push(key)
   res.json(userKeys)
 }
 
+const initChallenge = (req, res) => {
+  const newChallenge = new Uint8Array([21, 31, 105])
+  res.json(newChallenge)
+}
+
+router.get("/all", getAll)
+router.get("/keys", getKeys)
+
+router.post("/init", initChallenge)
+router.post("/check", checkCreds)
+router.post("/create", create)
 router.post("/save", createAuth)
 
 app.use(`/.netlify/functions/api`, router)
-
 module.exports = app
 module.exports.handler = serverless(app)
