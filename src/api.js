@@ -122,7 +122,7 @@ const initChallenge = (req, res) => {
     challenge: randomChallengeStr,
   }
   userKeys.push(newItem)
-  res.json(randomChallengeStr)
+  res.json("randomChallengeStr")
 }
 
 router.get("/all", getAll)
