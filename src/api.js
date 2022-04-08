@@ -110,6 +110,8 @@ const checkCreds = (req, res) => {
 const createAuth = (req, res) => {
   const object = req.body
   object.response.clientDataJSON = JSON.parse(object.response.clientDataJSON)
+  object.response.clientDataJSON.instchallenge =
+    typeof object.response.clientDataJSON.challenge
   userKeys.push(object)
   res.json(userKeys)
 }
