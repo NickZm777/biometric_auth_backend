@@ -17,33 +17,17 @@ const invalid_login = require("./invalid_login.json")
 const invalid_password = require("./invalid_password.json")
 const invalid_both_creds = require("./invalid_both_creds.json")
 const login_exists = require("./login_exists.json")
-
-const data = require("/data.json")
-
-// const data = [
-//   {
-//     id: "1111sdfdsf",
-//     firstName: "Jason",
-//     lastName: "X",
-//     login: "qw",
-//     password: "123",
-//   },
-// ]
-
-const keys = [
-  {
-    key: "example key",
-  },
-]
+const userData = require("store/data.json")
+const userKeys = require("/store/keys.json")
 
 const getAll = (req, res) => {
-  console.log(data)
-  res.json(data)
+  console.log(userData)
+  res.json(userData)
 }
 
 const getKeys = (req, res) => {
-  console.log(keys)
-  res.json(keys)
+  console.log(userKeys)
+  res.json(userKeys)
 }
 
 const create = (req, res) => {
@@ -53,7 +37,7 @@ const create = (req, res) => {
   const newLogin = req.body.data.login
   const newPassword = req.body.data.password
 
-  const checkLogin = data.find((user) => user.login === newLogin)
+  const checkLogin = userData.find((user) => user.login === newLogin)
 
   console.log("login:", newLogin)
   console.log("password:", newPassword)
@@ -70,7 +54,7 @@ const create = (req, res) => {
       login: newLogin,
       password: newPassword,
     }
-    data.push(newCredentials)
+    userData.push(newCredentials)
 
     const response = {
       status: "success",
@@ -90,7 +74,7 @@ const checkCreds = (req, res) => {
   const reqLogin = req.body.data.login
   const reqPassword = req.body.data.password
 
-  const checkUser = data.find((user) => user.login === reqLogin)
+  const checkUser = userData.find((user) => user.login === reqLogin)
 
   console.log("login:", reqLogin)
   console.log("password:", reqPassword)
@@ -153,8 +137,8 @@ const devices = {
 
 const createAuth = (req, res) => {
   const key = req.body
-  keys.push(key)
-  res.json(keys)
+  userKeys.push(key)
+  res.json(userKeys)
 }
 
 router.post("/save", createAuth)
