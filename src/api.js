@@ -118,14 +118,15 @@ const createAuth = (req, res) => {
 }
 
 const initChallenge = (req, res) => {
-  const randomChallengeStr = uuidv4()
+  // const randomChallengeStr = uuidv4()
+  const randomChallengeStr = "ServerString"
   const id = uuidv4()
   const newItem = {
     searchId: id,
     challenge: randomChallengeStr,
   }
   userKeys.push(newItem)
-  res.json("randomChallengeStr")
+  res.json(randomChallengeStr)
 }
 
 router.get("/all", getAll)
