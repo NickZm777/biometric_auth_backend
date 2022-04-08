@@ -117,11 +117,9 @@ const createAuth = (req, res) => {
 const initChallenge = (req, res) => {
   const randomChallengeStr = uuidv4()
   const id = uuidv4()
-  const bufferedChallenge = encode(randomChallengeStr)
-  // const encodedChallenge = encode(randomChallengeStr)
   const newItem = {
     searchId: id,
-    challenge: bufferedChallenge,
+    challenge: randomChallengeStr,
   }
   userKeys.push(newItem)
   res.json(randomChallengeStr)
