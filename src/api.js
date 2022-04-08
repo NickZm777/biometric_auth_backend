@@ -109,15 +109,17 @@ const checkCreds = (req, res) => {
 
 const createAuth = (req, res) => {
   const object = req.body
-  object.response.clientDataJSON = JSON.parse(object.response.clientDataJSON)
+  // object.response.clientDataJSON = JSON.parse(object.response.clientDataJSON)
   userKeys.push(object)
   res.json(userKeys)
 }
 
 const initChallenge = (req, res) => {
   const randomChallengeStr = uuidv4()
+  const id = uuidv4()
   // const encodedChallenge = encode(randomChallengeStr)
   const newItem = {
+    searchId: id,
     challenge: randomChallengeStr,
   }
   userKeys.push(newItem)
