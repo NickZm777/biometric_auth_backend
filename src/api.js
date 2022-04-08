@@ -107,7 +107,7 @@ const createAuth = (req, res) => {
 }
 
 const initChallenge = (req, res) => {
-  const newChallenge = new Uint8Array([21, 31, 105])
+  const newChallenge = "initialChallengeString"
   res.json(newChallenge)
 }
 
