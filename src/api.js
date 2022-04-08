@@ -109,7 +109,7 @@ const checkCreds = (req, res) => {
 
 const createAuth = (req, res) => {
   const object = req.body
-  // object.response.clientDataJSON = JSON.parse(object.response.clientDataJSON)
+  object.response.clientDataJSON = JSON.parse(object.response.clientDataJSON)
   userKeys.push(object)
   res.json(userKeys)
 }
