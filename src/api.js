@@ -10,6 +10,7 @@ const decode = (buffer, utf) => {
 const encode = (string) => {
   return new TextEncoder().encode(string)
 }
+
 const strID = uuidv4()
 console.log(strID)
 
@@ -107,8 +108,9 @@ const checkCreds = (req, res) => {
 }
 
 const createAuth = (req, res) => {
-  const key = req.body
-  userKeys.push(key)
+  const object = req.body
+  object.response.clientDataJSON = JSON.parse(object.response.clientDataJSON)
+  userKeys.push(object)
   res.json(userKeys)
 }
 
