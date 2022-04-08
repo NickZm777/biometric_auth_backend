@@ -18,15 +18,17 @@ const invalid_password = require("./invalid_password.json")
 const invalid_both_creds = require("./invalid_both_creds.json")
 const login_exists = require("./login_exists.json")
 
-const data = [
-  {
-    id: "1111sdfdsf",
-    firstName: "Jason",
-    lastName: "X",
-    login: "qw",
-    password: "123",
-  },
-]
+const data = require("/data.json")
+
+// const data = [
+//   {
+//     id: "1111sdfdsf",
+//     firstName: "Jason",
+//     lastName: "X",
+//     login: "qw",
+//     password: "123",
+//   },
+// ]
 
 const keys = [
   {
