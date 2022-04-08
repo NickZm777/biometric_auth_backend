@@ -3,6 +3,16 @@ const serverless = require("serverless-http")
 const cors = require("cors")
 const { v4: uuidv4 } = require("uuid")
 
+const decode = (buffer, utf) => {
+  return new TextDecoder(utf).decode(buffer)
+}
+
+const encode = (string) => {
+  return new TextEncoder().encode(string)
+}
+const strID = uuidv4()
+console.log(strID)
+
 const app = express()
 app.use(cors())
 app.use(express.json())
@@ -34,10 +44,6 @@ const create = (req, res) => {
   const newPassword = req.body.data.password
 
   const checkLogin = userData.find((user) => user.login === newLogin)
-
-  console.log("login:", newLogin)
-  console.log("password:", newPassword)
-  console.log("checkLogin:", checkLogin)
 
   if (checkLogin) {
     res.json(login_exists)
@@ -107,8 +113,13 @@ const createAuth = (req, res) => {
 }
 
 const initChallenge = (req, res) => {
-  const newChallenge = "initialChallengeString"
-  res.json(newChallenge)
+  const randomChallengeStr = uuidv4()
+  // const encodedChallenge = encode(randomChallengeStr)
+  const newItem = {
+    challenge: randomChallengeStr,
+  }
+  userKeys.push(newItem)
+  res.json(randomChallengeStr)
 }
 
 router.get("/all", getAll)
