@@ -9,10 +9,10 @@ const { v4: uuidv4 } = require("uuid")
 const app = express()
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
-const router = express.Router();
+app.use(express.urlencoded({ extended: true }))
+const router = express.Router()
 
-const authenticated = require("./authenticated.json");
+const authenticated = require("./authenticated.json")
 const invalid_login = require("./invalid_login.json")
 const invalid_password = require("./invalid_password.json")
 const invalid_both_creds = require("./invalid_both_creds.json")
@@ -136,12 +136,6 @@ router.get("/keys", getKeys)
 
 router.post("/check", checkCreds)
 
-// router.post("/all", (req, res) => {
-//   console.log("login:", req.body.data.login)
-//   console.log("password:", req.body.data.password)
-//   getAll(req, res)
-// })
-
 router.post("/create", create)
 
 const devices = {
@@ -154,26 +148,6 @@ const devices = {
   userAgent: "",
   user: "",
 }
-
-// const createAuth = async (req, res) => {
-//   const deviceId = req.cookies["my-long-live-cookie"]
-//   const device = await devices.findById(deviceId)
-//   if (!device) return {}
-//   device.challenge = require("crypto").randomBytes(16).toString("hex")
-//   await device.save()
-//   return { challenge: device.challenge }
-// }
-
-// -----------------------------------------------------------
-
-// const createAuth = (req, res) => {
-//   const deviceId = "333"
-//   const device = devices
-//   if (!device) return {}
-//   device.challenge = require("crypto").randomBytes(16).toString("hex")
-//   // await device.save()
-//   res.json({ challenge: device.challenge })
-// }
 
 const createAuth = (req, res) => {
   const key = req.body
