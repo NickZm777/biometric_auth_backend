@@ -110,7 +110,7 @@ const checkCreds = (req, res) => {
 const createAuth = (req, res) => {
   const object = req.body;
   object.response.clientDataJSON = JSON.parse(object.response.clientDataJSON);
-  object.response.clientDataJSON.challenge = object.response.clientDataJSON.challenge.toString(
+  object.response.clientDataJSON.challengeer = object.response.clientDataJSON.challenge.toString(
     "base64"
   );
   userKeys.push(object);
@@ -124,7 +124,7 @@ const saveBuffer = (req, res) => {
 
 const initChallenge = (req, res) => {
   // const randomChallengeStr = uuidv4()
-  const randomChallengeStr = "ServerString";
+  const randomChallengeStr = "ServerStringer";
   const id = uuidv4();
   const newItem = {
     searchId: id,
