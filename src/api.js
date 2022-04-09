@@ -2,6 +2,7 @@ const express = require("express");
 const serverless = require("serverless-http");
 const cors = require("cors");
 const { v4: uuidv4 } = require("uuid");
+const base64 = require("base-64");
 
 const decode = (buffer, utf) => {
   return new TextDecoder(utf).decode(buffer);
@@ -10,6 +11,7 @@ const decode = (buffer, utf) => {
 const encode = (string) => {
   return new TextEncoder().encode(string);
 };
+const randomChallengeStr = "ServerStringerdecoded";
 
 const strID = uuidv4();
 console.log(strID);
@@ -109,10 +111,15 @@ const checkCreds = (req, res) => {
 
 const createAuth = (req, res) => {
   const object = req.body;
+
   object.response.clientDataJSON = JSON.parse(object.response.clientDataJSON);
-  object.response.clientDataJSON.challengeer = object.response.clientDataJSON.challenge.toString(
-    "base64"
+  object.response.clientDataJSON.challengeer = base64.decode(
+    object.response.clientDataJSON.challenge
   );
+  object.response.clientDataJSON.isEqual =
+    object.response.clientDataJSON.challengeer === randomChallengeStr
+      ? true
+      : false;
   userKeys.push(object);
   res.json(userKeys);
 };
@@ -124,7 +131,7 @@ const saveBuffer = (req, res) => {
 
 const initChallenge = (req, res) => {
   // const randomChallengeStr = uuidv4()
-  const randomChallengeStr = "ServerStringer";
+  // const randomChallengeStr = "ServerStringer";
   const id = uuidv4();
   const newItem = {
     searchId: id,
