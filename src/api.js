@@ -124,14 +124,13 @@ const createAuth = (req, res) => {
     object.response.clientDataJSON.challenge
   )
   object.response.clientDataJSON.isEqual =
-    object.response.clientDataJSON.challengeer === randomChallengeStr
-      ? true
-      : false
-  userKeys.push(object)
+    object.response.clientDataJSON.chall === randomChallengeStr ? true : false
+
   const parsedAttestObj = parseAttestationObject(
     object.response.attestationObject
   )
   object.response.parsedAttObject = parsedAttestObj
+  userKeys.push(object)
 
   res.json(userKeys)
 }
