@@ -130,7 +130,7 @@ const createAuth = (req, res) => {
   //   object.response.attestationObject
   // )
   // object.response.parsedAttObject = parsedAttestObj
-  // userKeys.push(object)
+  userKeys.push(object)
 
   res.json(userKeys)
 }
