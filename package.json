@@ -15,6 +15,7 @@
     "cbor": "^8.1.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
+    "detect-character-encoding": "^0.8.0",
     "express": "^4.17.3",
     "fs": "^0.0.1-security",
     "netlify-lambda": "^2.0.15",

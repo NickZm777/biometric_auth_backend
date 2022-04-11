@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require("uuid")
 const base64 = require("base-64")
 const base64url = require("base64url")
 const cbor = require("cbor")
+// const detectCharacterEncoding = require("detect-character-encoding")
 
 function parseAttestationObject(attestationObject) {
   const buffer = base64url.toBuffer(attestationObject)
@@ -23,6 +24,12 @@ function parseAttestationObject(attestationObject) {
 // const parseAttestation = parseAttestationObject(tst)
 
 // console.log(parseAttestation)
+
+// const fileBuffer =
+//   '�cfmtdnonegattStmt�hauthDataX�5��;p-\u0016�%\u000c�7`��)�cg�P$%R��\u0007 ��Z6E\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014�\u0005���V�\u0017�\\y���8����3�\u0001\u0002\u0003& \u0001!X %� \u001a\u0014�X\u0003t8K�\\\u000f���u�mT��\u001dD�Vn~Đ\u000f"X Փ�\u0008\u001d\u007fU�� AB\u0014+g�qQ�\u0014*\u000f�Ť�Z\u0004@��'
+// const charsetMatch = detectCharacterEncoding(fileBuffer)
+
+// console.log(charsetMatch)
 
 const decode = (buffer, utf) => {
   return new TextDecoder(utf).decode(buffer)
@@ -137,7 +144,9 @@ const createAuth = (req, res) => {
     object.response.clientDataJSON.challenge
   )
   object.response.clientDataJSON.isEqual =
-    object.response.clientDataJSON.chall === randomChallengeStr ? true : false
+    object.response.clientDataJSON.challengeer === randomChallengeStr
+      ? true
+      : false
 
   // const parsedAttestObj = parseAttestationObject(
   //   object.response.attestationObject
