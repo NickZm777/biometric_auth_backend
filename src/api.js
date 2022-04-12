@@ -130,7 +130,7 @@ const createAuth = (req, res) => {
     //   userAgent: "",
     //   user: "",
     // }
-    // const object = req.body
+    const object = req.body
     // // object.rawIdconverted = decode(object.rawId, "utf-8")
     // // result.publicKey = object.id
     // result.clientDataJSON = JSON.parse(
@@ -165,7 +165,7 @@ const createAuth = (req, res) => {
       object.response.attestationObject
     )
 
-    userKeys.push(result)
+    userKeys.push(object)
 
     res.json(userKeys)
   } catch (e) {
