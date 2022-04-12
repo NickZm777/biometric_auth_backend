@@ -140,10 +140,11 @@ const createAuth = (req, res) => {
   result.attestationObject = parseAttestationObject(
     object.response.attestationObject
   )
-  const checkUser = userKeys.find((user) => user.challenge === result.challenge)
-  checkUser = result
 
-  // userKeys.push(result)
+  const checkUser = userKeys.find((user) => user.challenge === result.challenge)
+  if (checkUser) {
+    checkUser = result
+  } else userKeys.push(result)
 
   res.json(userKeys)
 }
