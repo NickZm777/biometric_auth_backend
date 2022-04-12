@@ -135,10 +135,7 @@ const createAuth = (req, res) => {
     base64.decode(object.response.clientDataJSON)
   )
   result.challenge = base64.decode(object.response.clientDataJSON.challenge)
-  result.isEqual =
-    object.response.clientDataJSON.challengeer === randomChallengeStr
-      ? true
-      : false
+  result.isEqual = result.challenge === result.id ? true : false
 
   // const parsedAttestObj = parseAttestationObject(
   //   object.response.attestationObject
