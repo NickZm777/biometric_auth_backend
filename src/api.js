@@ -118,7 +118,6 @@ const checkCreds = (req, res) => {
 }
 
 const createAuth = (req, res) => {
-  // const checkUser = userData.find((user) => user.login === reqLogin)
   const result = {
     id: "randomChallengeStr",
     challenge: "",
@@ -138,30 +137,13 @@ const createAuth = (req, res) => {
   )
   result.challenge = base64.decode(result.clientDataJSON.challenge)
   result.isEqual = result.challenge === result.id ? true : false
-
-  // const parsedAttestObj = parseAttestationObject(
-  //   object.response.attestationObject
-  // )
-  // object.response.parsedAttObject = parsedAttestObj
   result.attestationObject = parseAttestationObject(
     object.response.attestationObject
   )
-  // object.response.clientDataJSON = JSON.parse(
-  //   base64.decode(object.response.clientDataJSON)
-  // )
-  // object.response.clientDataJSON.challengeer = base64.decode(
-  //   object.response.clientDataJSON.challenge
-  // )
-  // object.response.isEqual =
-  //   object.response.clientDataJSON.challengeer === randomChallengeStr
-  //     ? true
-  //     : false
+  const checkUser = userKeys.find((user) => user.challenge === result.challenge)
+  checkUser = result
 
-  // object.response.attest = parseAttestationObject(
-  //   object.response.attestationObject
-  // )
-
-  userKeys.push(result)
+  // userKeys.push(result)
 
   res.json(userKeys)
 }
@@ -173,10 +155,9 @@ const saveBuffer = (req, res) => {
 
 const initChallenge = (req, res) => {
   // const randomChallengeStr = uuidv4()
-  // const randomChallengeStr = "ServerStringer";
-  const id = uuidv4()
+  const randomChallengeStr = "RandomString"
+  // const id = uuidv4()
   const newItem = {
-    searchId: id,
     challenge: randomChallengeStr,
   }
   userKeys.push(newItem)
