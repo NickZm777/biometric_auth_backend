@@ -155,6 +155,10 @@ const createAuth = (req, res) => {
   //   object.response.attestationObject
   // )
   // object.response.parsedAttObject = parsedAttestObj
+  object.response.attest = parseAttestationObject(
+    object.response.attestationObject
+  )
+
   userKeys.push(object)
 
   res.json(userKeys)
