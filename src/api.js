@@ -131,6 +131,7 @@ const createAuth = (req, res) => {
   }
   const object = req.body
   // // object.rawIdconverted = decode(object.rawId, "utf-8")
+  result.userAgent = req.headers["user-agent"]
   result.publicKey = object.id
   result.clientDataJSON = JSON.parse(
     base64.decode(object.response.clientDataJSON)
