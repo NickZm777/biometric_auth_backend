@@ -143,7 +143,7 @@ const createAuth = (req, res) => {
 
   const checkUser = userKeys.find((user) => user.challenge === result.challenge)
   if (checkUser) {
-    checkUser = result
+    userKeys[userKeys.indexOf(checkUser)] = result
   } else userKeys.push(result)
 
   res.json(userKeys)
