@@ -138,27 +138,27 @@ const createAuth = (req, res) => {
   result.challenge = base64.decode(result.clientDataJSON.challenge)
   result.isEqual = result.challenge === result.id ? true : false
 
-  // // const parsedAttestObj = parseAttestationObject(
-  // //   object.response.attestationObject
-  // // )
-  // // object.response.parsedAttObject = parsedAttestObj
-  // result.attestationObject = parseAttestationObject(
+  // const parsedAttestObj = parseAttestationObject(
   //   object.response.attestationObject
   // )
-  object.response.clientDataJSON = JSON.parse(
-    base64.decode(object.response.clientDataJSON)
-  )
-  object.response.clientDataJSON.challengeer = base64.decode(
-    object.response.clientDataJSON.challenge
-  )
-  object.response.isEqual =
-    object.response.clientDataJSON.challengeer === randomChallengeStr
-      ? true
-      : false
-
-  object.response.attest = parseAttestationObject(
+  // object.response.parsedAttObject = parsedAttestObj
+  result.attestationObject = parseAttestationObject(
     object.response.attestationObject
   )
+  // object.response.clientDataJSON = JSON.parse(
+  //   base64.decode(object.response.clientDataJSON)
+  // )
+  // object.response.clientDataJSON.challengeer = base64.decode(
+  //   object.response.clientDataJSON.challenge
+  // )
+  // object.response.isEqual =
+  //   object.response.clientDataJSON.challengeer === randomChallengeStr
+  //     ? true
+  //     : false
+
+  // object.response.attest = parseAttestationObject(
+  //   object.response.attestationObject
+  // )
 
   userKeys.push(result)
 
