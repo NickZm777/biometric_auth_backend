@@ -147,7 +147,7 @@ const createAuth = (req, res) => {
     object.response.clientDataJSON.challenge
   )
   object.response.isEqual =
-    object.response.clientDataJSON.challenge === randomChallengeStr
+    object.response.clientDataJSON.challengeer === randomChallengeStr
       ? true
       : false
 
