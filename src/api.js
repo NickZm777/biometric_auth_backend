@@ -139,7 +139,7 @@ const checkCreds = (req, res) => {
 
 const createAuth = (req, res) => {
   const object = req.body
-  object.rawIdconverted = decode(object.rawId, "utf-8")
+  // object.rawIdconverted = decode(object.rawId, "utf-8")
 
   object.response.clientDataJSON = JSON.parse(
     base64.decode(object.response.clientDataJSON)
