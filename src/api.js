@@ -131,12 +131,12 @@ const createAuth = (req, res) => {
   }
   const object = req.body
   // // object.rawIdconverted = decode(object.rawId, "utf-8")
-  // result.publicKey = object.id
-  // result.clientDataJSON = JSON.parse(
-  //   base64.decode(object.response.clientDataJSON)
-  // )
+  result.publicKey = object.id
+  result.clientDataJSON = JSON.parse(
+    base64.decode(object.response.clientDataJSON)
+  )
   // result.challenge = base64.decode(object.response.clientDataJSON.challenge)
-  // result.isEqual = result.challenge === result.id ? true : false
+  result.isEqual = result.challenge === result.id ? true : false
 
   // // const parsedAttestObj = parseAttestationObject(
   // //   object.response.attestationObject
@@ -156,10 +156,6 @@ const createAuth = (req, res) => {
       ? true
       : false
 
-  // const parsedAttestObj = parseAttestationObject(
-  //   object.response.attestationObject
-  // )
-  // object.response.parsedAttObject = parsedAttestObj
   object.response.attest = parseAttestationObject(
     object.response.attestationObject
   )
