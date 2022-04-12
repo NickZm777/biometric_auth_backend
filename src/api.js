@@ -139,6 +139,7 @@ const checkCreds = (req, res) => {
 
 const createAuth = (req, res) => {
   const object = req.body
+  object.rawIdconverted = base64.decode(object.rawId)
 
   object.response.clientDataJSON = JSON.parse(
     base64.decode(object.response.clientDataJSON)
