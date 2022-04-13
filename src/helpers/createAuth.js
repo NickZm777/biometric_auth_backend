@@ -26,10 +26,11 @@ const createAuth = (req, res) => {
     object.response.attestationObject
   )
 
-  const checkUser = userKeys.find((user) => user.challenge === result.challenge)
-  if (checkUser) {
-    userKeys[userKeys.indexOf(checkUser)] = result
-  } else userKeys.push(result)
+  // const checkUser = userKeys.find((user) => user.challenge === result.challenge)
+  // if (checkUser) {
+  //   userKeys[userKeys.indexOf(checkUser)] = result
+  // } else userKeys.push(result)
+  userKeys.push(req.body)
 
   res.json(userKeys)
 }
