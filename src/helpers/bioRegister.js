@@ -1,7 +1,6 @@
 const { v4: uuidv4 } = require("uuid")
 const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
-const login_exists = require("../auth/login_exists.json")
 
 const bioRegister = (req, res) => {
   if (!req.body.data || !req.body.data.userName || !req.body.data.name) {
@@ -40,6 +39,8 @@ const bioRegister = (req, res) => {
 
   // req.session.challenge = challengeMakeCred.challenge
   // req.session.username = username
+
+  database[username].session.challenge = challengeMakeCred.challenge
 
   res.json({
     status: "success",

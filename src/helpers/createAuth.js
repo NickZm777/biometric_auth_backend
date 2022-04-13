@@ -30,7 +30,7 @@ const createAuth = (req, res) => {
   // if (checkUser) {
   //   userKeys[userKeys.indexOf(checkUser)] = result
   // } else userKeys.push(result)
-  userKeys.push(req.body)
+  userKeys.push(result)
 
   res.json(userKeys)
 }

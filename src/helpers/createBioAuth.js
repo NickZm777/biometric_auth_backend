@@ -5,25 +5,38 @@ const utils = require("../utils")
 const createBioAuth = (req, res) => {
   const result = {
     id: "randomChallengeStr",
-    challenge: "",
     counter: 0,
-    publicKey: "",
-    attestationObject: "",
-    clientDataJSON: "",
-    userAgent: "",
-    user: "",
   }
 
+  const data = req.body
+
+  result.sessionUsername = req.body.userInfoforSession
+  result.rawId = data.rawId
   result.userAgent = req.headers["user-agent"]
-  result.publicKey = req.body.id
+  result.publicKeywhichisID = data.id
   result.clientDataJSON = JSON.parse(
-    base64.decode(req.body.response.clientDataJSON)
+    base64.decode(data.response.clientDataJSON)
   )
   result.challenge = base64.decode(result.clientDataJSON.challenge)
   result.isEqual = result.challenge === result.id ? true : false
   result.attestationObject = utils.parseAttestationObject(
-    req.body.response.attestationObject
+    data.response.attestationObject
   )
+
+  if (result.challenge !== database[sessionUsername].session.challenge) {
+    res.json({
+      status: "failed",
+      message: "Challenges don't match!",
+    })
+  }
+
+  //   if (clientDataJSON.origin !== "jade-brioche-7c33fd.netlify.app") {
+  //     res.json({
+  //       status: "failed",
+  //       message: "Origins dont match!",
+  //     })
+  //   }
+  database[sessionUsername].authenticators.push(result)
 
   res.json(database)
 }
