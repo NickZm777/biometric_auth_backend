@@ -4,7 +4,7 @@ const utils = require("../utils")
 const login_exists = require("../auth/login_exists.json")
 
 const bioRegister = (req, res) => {
-  if (!req.body.data || !req.body.data.username || !req.body.data.name) {
+  if (!req.body.data || !req.body.data.userName || !req.body.data.name) {
     res.json({
       status: "failed",
       message: "Request missing name or username field!",

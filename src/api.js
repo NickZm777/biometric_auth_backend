@@ -12,6 +12,7 @@ const router = express.Router()
 // get
 router.get("/all", helpers.getAll)
 router.get("/keys", helpers.getKeys)
+router.get("/users", helpers.getUsers)
 
 // post
 router.post("/init", helpers.initChallenge)
