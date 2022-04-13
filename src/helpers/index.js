@@ -1,0 +1,8 @@
+module.exports.getAll = require("./getAll")
+module.exports.getKeys = require("./getKeys")
+module.exports.create = require("./create")
+module.exports.checkCreds = require("./checkCreds")
+module.exports.createAuth = require("./createAuth")
+module.exports.saveBuffer = require("./saveBuffer")
+module.exports.initChallenge = require("./initChallenge")
+module.exports.bioRegister = require("./bioRegister")
