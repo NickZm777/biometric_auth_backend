@@ -12,7 +12,7 @@ const bioRegister = (req, res) => {
     return
   }
   const newId = uuidv4()
-  let username = req.body.data.username
+  let username = req.body.data.userName
   let name = req.body.data.name
 
   //   const checkLogin = userData.find((user) => user.login === newLogin)
