@@ -36,7 +36,7 @@ const createBioAuth = (req, res) => {
       message: "Origins dont match!",
     })
   }
-  database[sessionUsername].authenticators.push(result)
+  database[result.sessionUsername].authenticators.push(result)
 
   res.json(database)
 }
