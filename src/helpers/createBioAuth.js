@@ -8,9 +8,9 @@ const createBioAuth = (req, res) => {
     counter: 0,
   }
 
-  const data = req.body
+  const data = req.body.data
 
-  result.sessionUsername = data.userInfoforSession
+  result.sessionUsername = req.body.userInfoforSession
   result.rawId = data.rawId
   result.userAgent = req.headers["user-agent"]
   result.publicKeywhichisID = data.id
