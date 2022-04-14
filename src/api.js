@@ -24,6 +24,7 @@ router.post("/savebuffer", helpers.saveBuffer)
 // bio Post
 router.post("/register", helpers.bioRegister)
 router.post("/biocreate", helpers.createBioAuth)
+router.post("/try", helpers.tryConverter)
 
 //-----
 app.use(`/.netlify/functions/api`, router)

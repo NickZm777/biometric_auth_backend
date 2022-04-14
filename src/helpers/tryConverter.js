@@ -2,14 +2,13 @@ const base64 = require("base-64")
 const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
 const keys = require("../store/keys.json")
+const tryData = require("../store/try.json")
 
-const createBioAuth = (req, res) => {
+const tryConverter = (req, res) => {
   const result = {
     id: "randomChallengeStr",
     counter: 0,
   }
-
-  keys.push(req.body)
 
   const data = req.body.data
   const username = req.body.userInfoforSession
@@ -47,4 +46,4 @@ const createBioAuth = (req, res) => {
   res.json(database)
 }
 
-module.exports = createBioAuth
+module.exports = tryConverter
