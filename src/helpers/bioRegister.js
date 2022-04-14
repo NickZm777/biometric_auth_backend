@@ -17,7 +17,7 @@ const bioRegister = (req, res) => {
   //   const checkLogin = userData.find((user) => user.login === newLogin)
 
   if (database[username] && database[username].registered) {
-    response.json({
+    res.json({
       status: "failed",
       message: `Username ${username} already exists`,
     })
