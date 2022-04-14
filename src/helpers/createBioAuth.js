@@ -10,7 +10,7 @@ const createBioAuth = (req, res) => {
 
   const data = req.body
 
-  result.sessionUsername = req.body.userInfoforSession
+  result.sessionUsername = data.userInfoforSession
   result.rawId = data.rawId
   result.userAgent = req.headers["user-agent"]
   result.publicKeywhichisID = data.id
@@ -30,12 +30,12 @@ const createBioAuth = (req, res) => {
     })
   }
 
-  //   if (clientDataJSON.origin !== "jade-brioche-7c33fd.netlify.app") {
-  //     res.json({
-  //       status: "failed",
-  //       message: "Origins dont match!",
-  //     })
-  //   }
+  if (clientDataJSON.origin !== "https://jade-brioche-7c33fd.netlify.app") {
+    res.json({
+      status: "failed",
+      message: "Origins dont match!",
+    })
+  }
   database[sessionUsername].authenticators.push(result)
 
   res.json(database)
