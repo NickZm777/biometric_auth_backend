@@ -14,18 +14,18 @@ const createBioAuth = (req, res) => {
   const data = req.body.data
   const username = req.body.userInfoforSession
 
-  result.sessionUsername = username
-  result.rawId = data.rawId
-  result.userAgent = req.headers["user-agent"]
-  result.publicKeywhichisID = data.id
-  result.clientDataJSON = JSON.parse(
-    base64.decode(data.response.clientDataJSON)
-  )
-  result.challenge = base64.decode(result.clientDataJSON.challenge)
-  result.isEqual = result.challenge === result.id ? true : false
-  result.attestationObject = utils.parseAttestationObject(
-    data.response.attestationObject
-  )
+  // result.sessionUsername = username
+  // result.rawId = data.rawId
+  // result.userAgent = req.headers["user-agent"]
+  // result.publicKeywhichisID = data.id
+  // result.clientDataJSON = JSON.parse(
+  //   base64.decode(data.response.clientDataJSON)
+  // )
+  // result.challenge = base64.decode(result.clientDataJSON.challenge)
+  // result.isEqual = result.challenge === result.id ? true : false
+  // result.attestationObject = utils.parseAttestationObject(
+  //   data.response.attestationObject
+  // )
 
   if (result.challenge !== database[username].session.challenge) {
     res.json({
