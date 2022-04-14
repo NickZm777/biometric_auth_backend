@@ -20,10 +20,10 @@ router.post("/check", helpers.checkCreds)
 router.post("/create", helpers.create)
 router.post("/save", helpers.createAuth)
 router.post("/savebuffer", helpers.saveBuffer)
-router.post("/biocreate", helpers.createBioAuth)
 
 // bio Post
 router.post("/register", helpers.bioRegister)
+router.post("/biocreate", helpers.createBioAuth)
 
 //-----
 app.use(`/.netlify/functions/api`, router)

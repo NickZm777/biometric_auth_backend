@@ -28,6 +28,7 @@ const bioRegister = (req, res) => {
     name: name,
     registered: false,
     id: newId,
+    session: { challenge: null },
     authenticators: [],
   }
 
