@@ -1,4 +1,4 @@
-const generateServerVerificationCreds = (publicKey) => {
+const generateVerificationCreds = (publicKey) => {
   return {
     // challenge: randomBase64URLBuffer(32),
     //   rp: { name: "My test TouchID" },
@@ -16,4 +16,4 @@ const generateServerVerificationCreds = (publicKey) => {
   }
 }
 
-module.exports = generateServerVerificationCreds
+module.exports = generateVerificationCreds

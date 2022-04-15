@@ -25,8 +25,7 @@ const bioPrepareVerification = (req, res) => {
   }
 
   const publicKeyDevise = database[username].device.publicKey
-  const verificationCreds =
-    utils.generateServerVerificationCreds(publicKeyDevise)
+  const verificationCreds = utils.generateVerificationCreds(publicKeyDevise)
 
   // req.session.challenge = challengeMakeCred.challenge
   // req.session.username = username
