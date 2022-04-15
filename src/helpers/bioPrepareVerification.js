@@ -3,7 +3,7 @@ const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
 
 const bioPrepareVerification = (req, res) => {
-  if (!req.body.data || !req.body.data.userName) {
+  if (!req.body || !req.body.userName) {
     res.json({
       status: "failed",
       message: "Request missing username field!",
@@ -11,7 +11,7 @@ const bioPrepareVerification = (req, res) => {
     return
   }
   //   const newId = uuidv4()
-  let username = req.body.data.userName
+  let username = req.body.userName
   //   let name = req.body.data.name
 
   //   const checkLogin = userData.find((user) => user.login === newLogin)
