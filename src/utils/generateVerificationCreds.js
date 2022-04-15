@@ -12,7 +12,11 @@ const generateVerificationCreds = (publicKey) => {
         id: publicKey,
       },
     ],
-    userVerification: "required",
+    // userVerification: "required",
+    authenticatorSelection: {
+      authenticatorAttachment: "platform",
+      userVerification: "required",
+    },
   }
 }
 
