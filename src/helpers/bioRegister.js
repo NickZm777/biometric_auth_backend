@@ -30,6 +30,14 @@ const bioRegister = (req, res) => {
     id: newId,
     session: { challenge: null },
     authenticators: [],
+    device: {
+      counter: 0,
+      publicKey: null,
+      type: null,
+      attestationObject: null,
+      clientDataJSON: null,
+      userAgent: null,
+    },
   }
 
   const challengeMakeCred = utils.generateServerMakeCredRequest(

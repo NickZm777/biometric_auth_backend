@@ -13,6 +13,7 @@ const router = express.Router()
 router.get("/all", helpers.getAll)
 router.get("/keys", helpers.getKeys)
 router.get("/users", helpers.getUsers)
+router.get("/vo", helpers.getVerificationObjects)
 
 // post
 router.post("/init", helpers.initChallenge)
@@ -25,6 +26,7 @@ router.post("/savebuffer", helpers.saveBuffer)
 router.post("/register", helpers.bioRegister)
 router.post("/biocreate", helpers.createBioAuth)
 router.post("/try", helpers.tryConverter)
+router.post("/getverify", helpers.bioPrepareVerification)
 
 //-----
 app.use(`/.netlify/functions/api`, router)
