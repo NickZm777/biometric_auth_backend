@@ -54,7 +54,6 @@ const bioRegister = (req, res) => {
   res.json({
     status: "success",
     data: challengeMakeCred,
-    database: database,
   })
 }
 
