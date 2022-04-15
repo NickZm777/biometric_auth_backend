@@ -16,7 +16,7 @@ const bioPrepareVerification = (req, res) => {
 
   //   const checkLogin = userData.find((user) => user.login === newLogin)
 
-  if (database[username]) {
+  if (!database[username]) {
     res.json({
       status: "failed",
       message: `Username ${username} is not registered in DB`,
