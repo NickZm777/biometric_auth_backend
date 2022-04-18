@@ -15,6 +15,7 @@ const generateServerMakeCredRequest = (username, displayName, id) => {
       {
         type: "public-key",
         alg: -7, // "ES256" IANA COSE Algorithms registry
+        transports: ["internal"],
       },
     ],
     authenticatorSelection: {
