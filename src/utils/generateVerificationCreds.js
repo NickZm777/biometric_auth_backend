@@ -10,7 +10,7 @@ const generateVerificationCreds = (publicKey) => {
         type: "public-key",
         // id: base64urlDecode(publicKey),
         id: publicKey,
-        // transports: ["internal"],
+        transports: ["internal"],
       },
     ],
     userVerification: "required",
