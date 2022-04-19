@@ -14,10 +14,10 @@ const generateVerificationCreds = (publicKey) => {
       },
     ],
     // userVerification: "required",
-    authenticatorSelection: {
-      authenticatorAttachment: "platform",
-      userVerification: "required",
-    },
+    // authenticatorSelection: {
+    //   authenticatorAttachment: "platform",
+    //   userVerification: "required",
+    // },
   }
 }
 
