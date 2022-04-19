@@ -13,7 +13,7 @@ const generateVerificationCreds = (publicKey) => {
         transports: ["internal"],
       },
     ],
-    userVerification: "preferred",
+    userVerification: "discouraged",
     //   authenticatorSelection: {
     //     authenticatorAttachment: "platform",
     //     userVerification: "required",
