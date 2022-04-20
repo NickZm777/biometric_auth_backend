@@ -50,6 +50,7 @@ const createBioAuth = (req, res) => {
   database[username].device.userAgent = req.headers["user-agent"]
 
   database[username].authenticators.push(result)
+  keys.push(database)
 
   res.json(database)
 }
