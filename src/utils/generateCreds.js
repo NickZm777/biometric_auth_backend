@@ -19,8 +19,9 @@ const generateServerMakeCredRequest = (username, displayName, id) => {
     ],
     authenticatorSelection: {
       authenticatorAttachment: "platform",
-      userVerification: "required",
+      // userVerification: "required",
     },
+    attestation: "direct",
   }
 }
 
