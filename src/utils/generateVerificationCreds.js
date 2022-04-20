@@ -9,7 +9,7 @@ const generateVerificationCreds = (publicKey) => {
         transports: ["internal"],
       },
     ],
-    userVerification: "required",
+    // userVerification: "required",
   }
 }
 
