@@ -4,7 +4,7 @@ const utils = require("../utils")
 const verificationObjects = require("../store/verificationObjects.json")
 
 const verifyBioAuth = (req, res) => {
-  verificationObjects.push(req.body)
+  // verificationObjects.push(req.body)
 
   const data = req.body.data
   const username = req.body.userInfoforSession
@@ -55,6 +55,8 @@ const verifyBioAuth = (req, res) => {
   dataForVerification.clientDataJSON = data.response.clientDataJSON
   dataForVerification.authenticatorData = data.response.authenticatorData
   dataForVerification.signature = data.response.signature
+
+  verificationObjects.push(dataForVerification)
 
   try {
     const verificationResult = utils.verifyAssertion(dataForVerification)
