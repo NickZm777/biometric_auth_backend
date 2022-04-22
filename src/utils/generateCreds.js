@@ -14,13 +14,18 @@ const generateServerMakeCredRequest = (username, displayName, id) => {
     pubKeyCredParams: [
       {
         type: "public-key",
-        alg: -7, // "ES256" IANA COSE Algorithms registry
+        alg: -7,
       },
     ],
-    authenticatorSelection: {
-      authenticatorAttachment: "platform",
+    // authenticatorSelection: {
+    //   authenticatorAttachment: "platform",
+    //   userVerification: "required",
+    // },
+    authenticatorSelectionCriteria: {
+      attachment: "platform",
       userVerification: "required",
     },
+    attestation: "direct",
   }
 }
 
