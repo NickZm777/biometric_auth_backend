@@ -49,7 +49,7 @@ const verifyBioAuth = (req, res) => {
   //   database[username].authenticators.push(result)
 
   const dataForVerification = {}
-  dataForVerification.counter = 0
+  dataForVerification.counter = database[username].device.counter
   dataForVerification.attestationObject =
     database[username].device.attestationObject
   dataForVerification.clientDataJSON = data.response.clientDataJSON
@@ -60,6 +60,7 @@ const verifyBioAuth = (req, res) => {
 
   try {
     const verificationResult = utils.verifyAssertion(dataForVerification)
+    database[username].device.counter = verificationResult
     res.json({
       status: "success",
       result: verificationResult,
