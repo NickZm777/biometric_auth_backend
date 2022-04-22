@@ -56,12 +56,18 @@ const verifyBioAuth = (req, res) => {
   dataForVerification.authenticatorData = data.response.authenticatorData
   dataForVerification.signature = data.response.signature
 
-  const verificationResult = utils.verifyAssertion(dataForVerification)
-
-  res.json({
-    status: "success",
-    result: verificationResult,
-  })
+  try {
+    const verificationResult = utils.verifyAssertion(dataForVerification)
+    res.json({
+      status: "success",
+      result: verificationResult,
+    })
+  } catch (error) {
+    res.json({
+      status: "error",
+      result: error.message,
+    })
+  }
 }
 
 module.exports = verifyBioAuth
