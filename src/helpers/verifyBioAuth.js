@@ -48,7 +48,20 @@ const verifyBioAuth = (req, res) => {
 
   //   database[username].authenticators.push(result)
 
-  res.json(database)
+  const dataForVerification = {}
+  dataForVerification.counter = 0
+  dataForVerification.attestationObject =
+    database[username].device.attestationObject
+  dataForVerification.clientDataJSON = data.response.clientDataJSON
+  dataForVerification.authenticatorData = data.response.authenticatorData
+  dataForVerification.signature = data.response.signature
+
+  const verificationResult = utils.verifyAssertion(dataForVerification)
+
+  res.json({
+    status: "success",
+    result: verificationResult,
+  })
 }
 
 module.exports = verifyBioAuth
