@@ -7,7 +7,7 @@ const verifyBioAuth = (req, res) => {
   // verificationObjects.push(req.body)
 
   const data = req.body.data
-  const username = req.body.userInfoforSession
+  const username = req.body.sessionLogin
 
   //   result.sessionUsername = username
   //   result.rawId = data.rawId
@@ -63,12 +63,16 @@ const verifyBioAuth = (req, res) => {
     database[username].device.counter = verificationResult
     res.json({
       status: "success",
-      result: verificationResult,
+      info: {
+        firstName: database[username].firstName,
+        lastName: database[username].lastName,
+        counter: verificationResult,
+      },
     })
   } catch (error) {
     res.json({
       status: "error",
-      result: error.message,
+      message: error.message,
     })
   }
 }

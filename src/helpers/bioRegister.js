@@ -3,29 +3,36 @@ const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
 
 const bioRegister = (req, res) => {
-  if (!req.body.data || !req.body.data.userName || !req.body.data.name) {
+  if (
+    !req.body.data ||
+    !req.body.data.userName ||
+    !req.body.data.firstName ||
+    !req.body.data.lastName
+  ) {
     res.json({
-      status: "failed",
-      message: "Request missing name or username field!",
+      status: "error",
+      message: "Request missing firstName, lastName or userName fields info!",
     })
     return
   }
   const newId = uuidv4()
-  let username = req.body.data.userName
-  let name = req.body.data.name
+  const username = req.body.data.userName
+  const firstName = req.body.data.firstName
+  const lastName = req.body.data.lastName
 
   //   const checkLogin = userData.find((user) => user.login === newLogin)
 
   if (database[username] && database[username].registered) {
     res.json({
-      status: "failed",
-      message: `Username ${username} already exists`,
+      status: "error",
+      message: `Пользователь ${username} уже зарегистрирован`,
     })
     return
   }
 
   database[username] = {
-    name: name,
+    firstName: firstName,
+    lastName: lastName,
     registered: false,
     id: newId,
     session: { challenge: null },
@@ -42,7 +49,7 @@ const bioRegister = (req, res) => {
 
   const challengeMakeCred = utils.generateServerMakeCredRequest(
     username,
-    name,
+    firstName,
     database[username].id
   )
 

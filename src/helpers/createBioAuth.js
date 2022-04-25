@@ -29,7 +29,7 @@ const createBioAuth = (req, res) => {
 
   if (result.challenge !== database[username].session.challenge) {
     res.json({
-      status: "failed",
+      status: "error",
       message: "Challenges don't match!",
     })
   }
@@ -38,7 +38,7 @@ const createBioAuth = (req, res) => {
     result.clientDataJSON.origin !== "https://jade-brioche-7c33fd.netlify.app"
   ) {
     res.json({
-      status: "failed",
+      status: "error",
       message: "Origins dont match!",
     })
   }
@@ -53,7 +53,10 @@ const createBioAuth = (req, res) => {
   database[username].authenticators.push(result)
   keys.push(database)
 
-  res.json(database)
+  res.json({
+    status: "success",
+    message: "Registered",
+  })
 }
 
 module.exports = createBioAuth
