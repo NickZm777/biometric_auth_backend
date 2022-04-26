@@ -27,18 +27,19 @@ const bioPrepareVerification = (req, res) => {
 
   let verificationCreds;
 
-  if (database[username].lastName === 2) {
+  if (database[username].lastName === "B") {
     verificationCreds = utils.generateVerificationCreds2(publicKeyDevise);
   }
-  if (database[username].lastName === 3) {
+  if (database[username].lastName === "C") {
     verificationCreds = utils.generateVerificationCreds3(publicKeyDevise);
   }
-  if (database[username].lastName === 4) {
+  if (database[username].lastName === "D") {
     verificationCreds = utils.generateVerificationCreds4(publicKeyDevise);
   }
-  if (database[username].lastName === 5) {
+  if (database[username].lastName === "E") {
     verificationCreds = utils.generateVerificationCreds5(publicKeyDevise);
-  } else {
+  }
+  if (database[username].lastName === "A") {
     verificationCreds = utils.generateVerificationCreds(publicKeyDevise);
   }
 

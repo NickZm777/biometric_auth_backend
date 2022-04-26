@@ -49,34 +49,35 @@ const bioRegister = (req, res) => {
 
   let challengeMakeCred;
 
-  if (firstName === 5) {
+  if (firstName === "E") {
     challengeMakeCred = utils.generateServerMakeCredRequest5(
       username,
       firstName,
       database[username].id
     );
   }
-  if (firstName === 2) {
+  if (firstName === "B") {
     challengeMakeCred = utils.generateServerMakeCredRequest2(
       username,
       firstName,
       database[username].id
     );
   }
-  if (firstName === 3) {
+  if (firstName === "C") {
     challengeMakeCred = utils.generateServerMakeCredRequest3(
       username,
       firstName,
       database[username].id
     );
   }
-  if (firstName === 4) {
+  if (firstName === "D") {
     challengeMakeCred = utils.generateServerMakeCredRequest4(
       username,
       firstName,
       database[username].id
     );
-  } else {
+  }
+  if (firstName === "A") {
     challengeMakeCred = utils.generateServerMakeCredRequest(
       username,
       firstName,
