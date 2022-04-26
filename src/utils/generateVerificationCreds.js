@@ -12,8 +12,8 @@ const generateVerificationCreds = (publicKey) => {
         transports: ["internal"],
       },
     ],
-    userVerification: "required",
-    attestation: "direct",
+    // userVerification: "required",
+    // attestation: "direct",
   }
 }
 
