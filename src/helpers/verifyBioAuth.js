@@ -61,6 +61,7 @@ const verifyBioAuth = (req, res) => {
   try {
     const verificationResult = utils.verifyAssertion(dataForVerification)
     database[username].device.counter = verificationResult
+    database[username].registered = true
     res.json({
       status: "success",
       info: {

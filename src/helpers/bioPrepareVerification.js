@@ -19,7 +19,7 @@ const bioPrepareVerification = (req, res) => {
   if (!database[username]) {
     res.json({
       status: "failed",
-      message: `Username ${username} is not registered in DB`,
+      message: `Пользователь ${username} не зарегистрирован`,
     })
     return
   }
