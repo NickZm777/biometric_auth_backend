@@ -25,7 +25,7 @@ const bioRegister = (req, res) => {
   if (database[username] && database[username].registered) {
     res.json({
       status: "error",
-      message: `Пользователь ${username} уже зарегистрирован`,
+      message: `Пользователь "${username}" уже зарегистрирован`,
     })
     return
   }

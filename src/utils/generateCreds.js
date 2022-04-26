@@ -1,9 +1,12 @@
+const { v4: uuidv4 } = require("uuid")
+
 const generateServerMakeCredRequest = (username, displayName, id) => {
   return {
     // challenge: randomBase64URLBuffer(32),
-    challenge: "randomchallengefromgenerateServerMakeCredRequest",
+    // challenge: "randomchallengefromgenerateServerMakeCredRequest",
+    challenge: uuidv4(),
 
-    rp: { name: "My test TouchID" },
+    rp: { name: "Test TouchID" },
 
     user: {
       id: id,

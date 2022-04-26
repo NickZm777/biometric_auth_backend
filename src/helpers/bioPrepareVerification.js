@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require("uuid")
 const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
 
@@ -19,7 +18,7 @@ const bioPrepareVerification = (req, res) => {
   if (!database[username]) {
     res.json({
       status: "failed",
-      message: `Пользователь ${username} не зарегистрирован`,
+      message: `Пользователь "${username}" не зарегистрирован`,
     })
     return
   }

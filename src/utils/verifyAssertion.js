@@ -129,10 +129,10 @@ function verifyAssertion({
   const authrDataStruct = parseGetAssertAuthData(authenticatorDataBuff)
 
   if (!(authrDataStruct.flags & 0x01)) {
-    throw new Error("User was not presented during authentication!")
+    throw new Error("Пользователь не был представлен при аутентификации!")
   }
   if (authrDataStruct.counter <= counter) {
-    throw new Error("Counter didn't increase")
+    throw new Error("Значение Counter не увеличилось при аутентификации")
   }
 
   const clientDataHash = hash(base64url.toBuffer(clientDataJSON))
