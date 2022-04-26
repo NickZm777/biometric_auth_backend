@@ -64,6 +64,7 @@ const bioRegister = (req, res) => {
     );
   }
   if (firstName === "C") {
+    //not failed
     challengeMakeCred = utils.generateServerMakeCredRequest3(
       username,
       firstName,
