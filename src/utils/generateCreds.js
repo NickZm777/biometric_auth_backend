@@ -30,7 +30,7 @@ const generateServerMakeCredRequest = (username, displayName, id) => {
     //   attachment: "platform",
     //   userVerification: "required",
     // },
-    // attestation: "direct",
+    attestation: "direct",
   }
 }
 
