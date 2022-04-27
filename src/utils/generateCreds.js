@@ -20,16 +20,16 @@ const generateServerMakeCredRequest = (username, displayName, id) => {
         alg: -7,
       },
     ],
-    authenticatorSelection: {
-      authenticatorAttachment: "platform",
-      userVerification: "required",
-    },
-
-    // working options
-    // authenticatorSelectionCriteria: {
-    //   attachment: "platform",
+    // authenticatorSelection: {
+    //   authenticatorAttachment: "platform",
     //   userVerification: "required",
     // },
+
+    // working options
+    authenticatorSelectionCriteria: {
+      attachment: "platform",
+      userVerification: "required",
+    },
     attestation: "direct",
   }
 }
