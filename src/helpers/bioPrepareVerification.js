@@ -1,16 +1,16 @@
-const database = require("../store/bioUsersData.json");
-const utils = require("../utils");
+const database = require("../store/bioUsersData.json")
+const utils = require("../utils")
 
 const bioPrepareVerification = (req, res) => {
   if (!req.body || !req.body.userName) {
     res.json({
       status: "failed",
       message: "Request missing username field!",
-    });
-    return;
+    })
+    return
   }
   //   const newId = uuidv4()
-  let username = req.body.userName;
+  let username = req.body.userName
   //   let name = req.body.data.name
 
   //   const checkLogin = userData.find((user) => user.login === newLogin)
@@ -19,39 +19,23 @@ const bioPrepareVerification = (req, res) => {
     res.json({
       status: "error",
       message: `Пользователь "${username}" не зарегистрирован`,
-    });
-    return;
+    })
+    return
   }
 
-  const publicKeyDevise = database[username].device.publicKey;
+  const publicKeyDevise = database[username].device.publicKey
 
-  let verificationCreds;
-
-  if (database[username].lastName === "B") {
-    verificationCreds = utils.generateVerificationCreds2(publicKeyDevise);
-  }
-  if (database[username].lastName === "C") {
-    verificationCreds = utils.generateVerificationCreds3(publicKeyDevise);
-  }
-  if (database[username].lastName === "D") {
-    verificationCreds = utils.generateVerificationCreds4(publicKeyDevise);
-  }
-  if (database[username].lastName === "E") {
-    verificationCreds = utils.generateVerificationCreds5(publicKeyDevise);
-  }
-  if (database[username].lastName === "A") {
-    verificationCreds = utils.generateVerificationCreds(publicKeyDevise);
-  }
+  const verificationCreds = utils.generateVerificationCreds(publicKeyDevise)
 
   // req.session.challenge = challengeMakeCred.challenge
   // req.session.username = username
 
-  database[username].session.challenge = verificationCreds.challenge;
+  database[username].session.challenge = verificationCreds.challenge
 
   res.json({
     status: "success",
     data: verificationCreds,
-  });
-};
+  })
+}
 
-module.exports = bioPrepareVerification;
+module.exports = bioPrepareVerification
