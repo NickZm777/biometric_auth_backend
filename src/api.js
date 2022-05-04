@@ -24,10 +24,10 @@ router.post("/savebuffer", helpers.saveBuffer)
 
 // biometric post
 router.post("/registration_options", helpers.prepareRegistration)
-router.post("/register", helpers.registerKey)
+router.post("/register", helpers.registerUser)
 router.post("/try", helpers.tryConverter)
 router.post("/verification_options", helpers.prepareVerification)
-router.post("/verify", helpers.verifyKey)
+router.post("/verify", helpers.verifyUser)
 
 //-----
 app.use(`/.netlify/functions/api`, router)

@@ -3,7 +3,15 @@ const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
 const verificationObjects = require("../store/verificationObjects.json")
 
-const verifyKey = (req, res) => {
+const error_attestationType = require("../auth/error_attestationType.json")
+const error_challenge = require("../auth/error_challenge.json")
+const error_clientDataType = require("../auth/error_clientDataType.json")
+const error_origin = require("../auth/error_origin.json")
+const register_success = require("../auth/register_success.json")
+const error_fmt = require("../auth/error_fmt.json")
+const error_authData = require("../auth/error_authData.json")
+
+const verifyUser = (req, res) => {
   const data = req.body.data
   const username = req.body.sessionLogin
 
@@ -13,19 +21,16 @@ const verifyKey = (req, res) => {
     )
 
     if (clientDataJSON.origin !== "https://jade-brioche-7c33fd.netlify.app") {
-      res.json({
-        status: "error",
-        message: "Значения Origins не совпадают при проверке на сервере!",
-      })
+      res.json(error_origin)
+    }
+
+    if (clientDataJSON.type !== "webauthn.get") {
+      res.json(error_clientDataType)
     }
 
     const receivedChallenge = base64.decode(clientDataJSON.challenge)
-
     if (receivedChallenge !== database[username].session.challenge) {
-      res.json({
-        status: "error",
-        message: "Значения Challenge не совпадают при проверке на сервере!",
-      })
+      res.json(error_challenge)
     }
   } catch (error) {
     res.json({
@@ -64,4 +69,4 @@ const verifyKey = (req, res) => {
   }
 }
 
-module.exports = verifyKey
+module.exports = verifyUser
