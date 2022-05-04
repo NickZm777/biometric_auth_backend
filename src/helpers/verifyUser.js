@@ -7,16 +7,14 @@ const keys = require("../store/keys.json")
 const error_challenge = require("../auth/error_challenge.json")
 const error_clientDataType = require("../auth/error_clientDataType.json")
 const error_origin = require("../auth/error_origin.json")
+const error_publicKeyID = require("../auth/error_publicKeyID.json")
 
 const verifyUser = (req, res) => {
   const data = req.body.data
   const username = req.body.sessionLogin
 
   if (data.id !== database[username].device.publicKeyNotRaw) {
-    res.json({
-      status: "error",
-      message: "значения publicKey ID не совпадают",
-    })
+    res.json(error_publicKeyID)
   }
 
   try {
