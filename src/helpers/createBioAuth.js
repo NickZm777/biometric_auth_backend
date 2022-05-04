@@ -2,6 +2,13 @@ const base64 = require("base-64")
 const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
 const keys = require("../store/keys.json")
+const error_attestationType = require("../auth/error_attestationType.json")
+const error_challenge = require("../auth/error_challenge.json")
+const error_clientDataType = require("../auth/error_clientDataType.json")
+const error_origin = require("../auth/error_origin.json")
+const register_success = require("../auth/register_success.json")
+const error_fmt = require("../auth/error_fmt.json")
+const error_authData = require("../auth/error_authData.json")
 
 const createBioAuth = (req, res) => {
   const result = {
@@ -27,20 +34,30 @@ const createBioAuth = (req, res) => {
     data.response.attestationObject
   )
 
+  if (data.type !== "public-key") {
+    res.json(error_attestationType)
+  }
+
+  if (result.clientDataJSON.type !== "webauthn.create") {
+    res.json(error_clientDataType)
+  }
+
   if (result.challenge !== database[username].session.challenge) {
-    res.json({
-      status: "error",
-      message: "Challenges don't match!",
-    })
+    res.json(error_challenge)
   }
 
   if (
     result.clientDataJSON.origin !== "https://jade-brioche-7c33fd.netlify.app"
   ) {
-    res.json({
-      status: "error",
-      message: "Origins dont match!",
-    })
+    res.json(error_origin)
+  }
+
+  if (result.attestationObject.fmt !== "none") {
+    res.json(error_fmt)
+  }
+
+  if (!result.attestationObject.authData) {
+    res.json(error_authData)
   }
 
   database[username].device.counter = 0
@@ -53,10 +70,7 @@ const createBioAuth = (req, res) => {
   database[username].authenticators.push(result)
   keys.push(database)
 
-  res.json({
-    status: "success",
-    message: "Registered",
-  })
+  res.json(register_success)
 }
 
 module.exports = createBioAuth
