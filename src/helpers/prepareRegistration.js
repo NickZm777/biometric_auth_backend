@@ -2,7 +2,7 @@ const { v4: uuidv4 } = require("uuid")
 const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
 
-const bioRegister = (req, res) => {
+const prepareRegistration = (req, res) => {
   if (
     !req.body.data ||
     !req.body.data.userName ||
@@ -59,4 +59,4 @@ const bioRegister = (req, res) => {
   })
 }
 
-module.exports = bioRegister
+module.exports = prepareRegistration

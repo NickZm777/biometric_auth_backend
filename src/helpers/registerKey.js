@@ -10,7 +10,7 @@ const register_success = require("../auth/register_success.json")
 const error_fmt = require("../auth/error_fmt.json")
 const error_authData = require("../auth/error_authData.json")
 
-const createBioAuth = (req, res) => {
+const registerKey = (req, res) => {
   const result = {
     id: "randomChallengeStr",
     counter: 0,
@@ -73,4 +73,4 @@ const createBioAuth = (req, res) => {
   res.json(register_success)
 }
 
-module.exports = createBioAuth
+module.exports = registerKey

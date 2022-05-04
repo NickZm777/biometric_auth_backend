@@ -22,12 +22,12 @@ router.post("/create", helpers.create)
 router.post("/save", helpers.createAuth)
 router.post("/savebuffer", helpers.saveBuffer)
 
-// bio Post
-router.post("/register", helpers.bioRegister)
-router.post("/biocreate", helpers.createBioAuth)
+// biometric post
+router.post("/registration_options", helpers.prepareRegistration)
+router.post("/register", helpers.registerKey)
 router.post("/try", helpers.tryConverter)
-router.post("/getverify", helpers.bioPrepareVerification)
-router.post("/verify", helpers.verifyBioAuth)
+router.post("/verification_options", helpers.prepareVerification)
+router.post("/verify", helpers.verifyKey)
 
 //-----
 app.use(`/.netlify/functions/api`, router)

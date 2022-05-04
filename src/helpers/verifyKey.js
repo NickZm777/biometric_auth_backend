@@ -3,7 +3,7 @@ const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
 const verificationObjects = require("../store/verificationObjects.json")
 
-const verifyBioAuth = (req, res) => {
+const verifyKey = (req, res) => {
   const data = req.body.data
   const username = req.body.sessionLogin
 
@@ -64,4 +64,4 @@ const verifyBioAuth = (req, res) => {
   }
 }
 
-module.exports = verifyBioAuth
+module.exports = verifyKey

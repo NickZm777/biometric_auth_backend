@@ -1,7 +1,7 @@
 const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
 
-const bioPrepareVerification = (req, res) => {
+const prepareVerification = (req, res) => {
   if (!req.body || !req.body.userName) {
     res.json({
       status: "failed",
@@ -9,7 +9,7 @@ const bioPrepareVerification = (req, res) => {
     })
     return
   }
-  
+
   let username = req.body.userName
 
   if (!database[username]) {
@@ -32,4 +32,4 @@ const bioPrepareVerification = (req, res) => {
   })
 }
 
-module.exports = bioPrepareVerification
+module.exports = prepareVerification
