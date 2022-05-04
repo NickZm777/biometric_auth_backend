@@ -20,8 +20,6 @@ const bioRegister = (req, res) => {
   const firstName = req.body.data.firstName
   const lastName = req.body.data.lastName
 
-  //   const checkLogin = userData.find((user) => user.login === newLogin)
-
   if (database[username] && database[username].registered) {
     res.json({
       status: "error",
@@ -52,9 +50,6 @@ const bioRegister = (req, res) => {
     firstName,
     database[username].id
   )
-
-  // req.session.challenge = challengeMakeCred.challenge
-  // req.session.username = username
 
   database[username].session.challenge = challengeMakeCred.challenge
 

@@ -2,7 +2,6 @@ const { v4: uuidv4 } = require("uuid")
 
 const generateVerificationCreds = (publicKey) => {
   return {
-    // challenge: "randomchallengefromgenerateServerVerificationCredRequest",
     challenge: uuidv4(),
     rpId: "domain",
     allowCredentials: [
