@@ -2,6 +2,7 @@ const base64 = require("base-64")
 const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
 const verificationObjects = require("../store/verificationObjects.json")
+const keys = require("../store/keys.json")
 
 const error_challenge = require("../auth/error_challenge.json")
 const error_clientDataType = require("../auth/error_clientDataType.json")
@@ -11,18 +12,22 @@ const verifyUser = (req, res) => {
   const data = req.body.data
   const username = req.body.sessionLogin
 
-  if (data.id !== database[username].device.publicKey) {
-    res.json({
-      status: "error",
-      message: `id:${typeof data.id} - pkey:${typeof database[username].device
-        .publicKey}`,
-    })
-  }
+  keys.push(data)
+
+  // if (data.id !== database[username].device.publicKey) {
+  //   res.json({
+  //     status: "error",
+  //     message: `id:${typeof data.id} - pkey:${typeof database[username].device
+  //       .publicKey}`,
+  //   })
+  // }
 
   try {
     const clientDataJSON = JSON.parse(
       base64.decode(data.response.clientDataJSON)
     )
+
+    keys.push(clientDataJSON)
 
     if (clientDataJSON.origin !== "https://jade-brioche-7c33fd.netlify.app") {
       res.json(error_origin)
