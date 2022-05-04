@@ -52,9 +52,9 @@ const registerKey = (req, res) => {
     res.json(error_origin)
   }
 
-  if (result.attestationObject.fmt !== "none") {
-    res.json(error_fmt)
-  }
+  // if (result.attestationObject.fmt !== "none") {
+  //   res.json(error_fmt)
+  // }
 
   if (!result.attestationObject.authData) {
     res.json(error_authData)
