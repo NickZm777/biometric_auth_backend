@@ -12,8 +12,6 @@ const verifyUser = (req, res) => {
   const data = req.body.data
   const username = req.body.sessionLogin
 
-  keys.push(data)
-
   if (data.id !== database[username].device.publicKeyNotRaw) {
     res.json({
       status: "error",
@@ -25,8 +23,6 @@ const verifyUser = (req, res) => {
     const clientDataJSON = JSON.parse(
       base64.decode(data.response.clientDataJSON)
     )
-
-    keys.push(clientDataJSON)
 
     if (clientDataJSON.origin !== "https://jade-brioche-7c33fd.netlify.app") {
       res.json(error_origin)

@@ -16,7 +16,7 @@ const registerUser = (req, res) => {
     counter: 0,
   }
 
-  keys.push(req.body)
+  // keys.push(req.body)
 
   const data = req.body.data
   const username = req.body.userInfoforSession
