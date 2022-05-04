@@ -3,17 +3,20 @@ const database = require("../store/bioUsersData.json")
 const utils = require("../utils")
 const verificationObjects = require("../store/verificationObjects.json")
 
-const error_attestationType = require("../auth/error_attestationType.json")
 const error_challenge = require("../auth/error_challenge.json")
 const error_clientDataType = require("../auth/error_clientDataType.json")
 const error_origin = require("../auth/error_origin.json")
-const register_success = require("../auth/register_success.json")
-const error_fmt = require("../auth/error_fmt.json")
-const error_authData = require("../auth/error_authData.json")
 
 const verifyUser = (req, res) => {
   const data = req.body.data
   const username = req.body.sessionLogin
+
+  if (data.id !== database[username].device.publicKey) {
+    res.json({
+      status: "error",
+      message: "ID и publicKey не совпали",
+    })
+  }
 
   try {
     const clientDataJSON = JSON.parse(
