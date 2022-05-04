@@ -62,6 +62,7 @@ const registerUser = (req, res) => {
 
   database[username].device.counter = 0
   database[username].device.publicKey = data.rawId
+  database[username].device.publicKeyNotRaw = data.id
   database[username].device.type = data.type
   database[username].device.attestationObject = data.response.attestationObject
   database[username].device.clientDataJSON = data.response.clientDataJSON

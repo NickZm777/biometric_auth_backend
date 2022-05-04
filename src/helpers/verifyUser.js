@@ -14,13 +14,12 @@ const verifyUser = (req, res) => {
 
   keys.push(data)
 
-  // if (data.id !== database[username].device.publicKey) {
-  //   res.json({
-  //     status: "error",
-  //     message: `id:${typeof data.id} - pkey:${typeof database[username].device
-  //       .publicKey}`,
-  //   })
-  // }
+  if (data.id !== database[username].device.publicKeyNotRaw) {
+    res.json({
+      status: "error",
+      message: "значения publicKey ID не совпадают",
+    })
+  }
 
   try {
     const clientDataJSON = JSON.parse(

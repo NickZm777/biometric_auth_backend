@@ -38,6 +38,7 @@ const prepareRegistration = (req, res) => {
     device: {
       counter: 0,
       publicKey: null,
+      publicKeyNotRaw: null,
       type: null,
       attestationObject: null,
       clientDataJSON: null,
