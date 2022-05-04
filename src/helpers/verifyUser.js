@@ -14,7 +14,7 @@ const verifyUser = (req, res) => {
   if (data.id !== database[username].device.publicKey) {
     res.json({
       status: "error",
-      message: "ID и publicKey не совпали",
+      message: `id:${data.id} - pkey:${database[username].device.publicKey}`,
     })
   }
 
